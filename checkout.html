@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout | Achar Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-bar">
+        <a class="brand" href="index.html">Achar Premium</a>
+        <nav class="main-nav" aria-label="Primary navigation">
+          <a href="index.html">Home</a>
+          <a href="index.html#catalog">Pickles</a>
+          <a href="about.html">About</a>
+          <a href="signup.html">Sign Up</a>
+          <a href="checkout.html">Checkout</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <div class="mobile-menu" aria-hidden="true">
+        <a href="index.html">Home</a>
+        <a href="index.html#catalog">Pickles</a>
+        <a href="about.html">About</a>
+        <a href="signup.html">Sign Up</a>
+        <a href="checkout.html">Checkout</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container split-grid">
+          <div>
+            <p class="eyebrow">Secure checkout</p>
+            <h1>Finalize your premium pickle order with confidence.</h1>
+            <p class="hero-text">Review your cart, add delivery details, and choose your payment method in a smooth and secure experience.</p>
+            <div class="cart-summary" id="cart-summary">
+              <h3>Selected items</h3>
+              <div id="cart-items" class="cart-items">
+                <p class="empty-cart">No items yet. Add a pickle from the home page.</p>
+              </div>
+              <div class="cart-total">
+                <span>Order total</span>
+                <strong id="cart-total">$0.00</strong>
+              </div>
+            </div>
+          </div>
+
+          <form id="checkout-form" class="panel-form" aria-label="Place order">
+            <label for="customer-name">Full name</label>
+            <input type="text" id="customer-name" placeholder="Your full name" required />
+            <label for="customer-email">Email</label>
+            <input type="email" id="customer-email" placeholder="you@example.com" required />
+            <label for="customer-address">Delivery address</label>
+            <textarea id="customer-address" rows="4" placeholder="Street address, city, postal code" required></textarea>
+            <label for="payment-method">Payment method</label>
+            <select id="payment-method" required>
+              <option value="card">Credit card</option>
+              <option value="upi">UPI</option>
+              <option value="cod">Cash on delivery</option>
+            </select>
+            <button class="button primary" type="submit">Place order</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="brand" href="index.html">Achar Premium</a>
+          <p>Fast delivery, premium packaging, and memorable flavors.</p>
+        </div>
+        <div class="footer-links">
+          <a href="about.html">About</a>
+          <a href="signup.html">Sign Up</a>
+          <a href="checkout.html">Checkout</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
