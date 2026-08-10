@@ -12,18 +12,52 @@ const products = [
   { id: 'coconut-pepper', name: 'Coconut Pepper Bliss', price: 14.5 }
 ];
 
-const cart = {};
+const productCategories = {
+  'classic-mango': 'sweet',
+  'garlic-lemon': 'traditional',
+  'chili-carrot': 'spicy',
+  'green-chili': 'spicy',
+  'ginger-honey': 'sweet',
+  'cumin-cauliflower': 'traditional',
+  'tangy-onion': 'traditional',
+  'spiced-eggplant': 'spicy',
+  'mixed-veggie': 'traditional',
+  'beetroot-saffron': 'sweet',
+  'coconut-pepper': 'spicy'
+};
+
+const STORAGE_KEY = 'achar-premium-cart';
+
+function loadCart() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : {};
+  } catch {
+    return {};
+  }
+}
+
+const cart = loadCart();
 const cartItemsEl = document.getElementById('cart-items');
 const cartTotalEl = document.getElementById('cart-total');
 const addCartButtons = document.querySelectorAll('.add-cart');
 const mobileMenu = document.querySelector('.mobile-menu');
 const navToggle = document.querySelector('.nav-toggle');
+const customizeForm = document.getElementById('customize-form');
+const signupForm = document.getElementById('signup-form');
+const checkoutForm = document.getElementById('checkout-form');
 
 function formatPrice(value) {
   return `$${value.toFixed(2)}`;
 }
 
+function saveCart() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+}
+
 function updateCart() {
+  if (!cartItemsEl || !cartTotalEl) return;
+
   const items = Object.values(cart);
   cartItemsEl.innerHTML = '';
 
@@ -58,21 +92,83 @@ function addToCart(productId) {
 
   cart[productId] = cart[productId] || { ...product, quantity: 0 };
   cart[productId].quantity += 1;
-
+  saveCart();
   updateCart();
 }
 
-addCartButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    addToCart(button.dataset.productId);
-    button.textContent = 'Added';
-    button.disabled = true;
-    setTimeout(() => {
-      button.textContent = 'Add to cart';
-      button.disabled = false;
-    }, 1400);
+function initProductFilters() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const productCards = document.querySelectorAll('.product-card');
+
+  filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      filterButtons.forEach((btn) => btn.classList.toggle('active', btn === button));
+
+      const selectedFilter = button.dataset.filter || 'all';
+      productCards.forEach((card) => {
+        const addButton = card.querySelector('.add-cart');
+        const productId = addButton?.dataset.productId || '';
+        const category = productCategories[productId] || 'traditional';
+        const shouldShow = selectedFilter === 'all' || category === selectedFilter;
+        card.classList.toggle('is-hidden', !shouldShow);
+      });
+    });
   });
-});
+}
+
+function initProductSliders() {
+  document.querySelectorAll('.product-gallery').forEach((gallery) => {
+    if (gallery.dataset.sliderInitialized === 'true') return;
+
+    const slides = Array.from(gallery.querySelectorAll('img'));
+    if (!slides.length) return;
+
+    let currentIndex = 0;
+
+    const controls = document.createElement('div');
+    controls.className = 'product-slider-controls';
+    controls.innerHTML = `
+      <button type="button" class="slider-btn" data-direction="prev">‹</button>
+      <button type="button" class="slider-btn" data-direction="next">›</button>
+    `;
+
+    gallery.appendChild(controls);
+    gallery.dataset.sliderInitialized = 'true';
+
+    const showSlide = () => {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentIndex);
+      });
+    };
+
+    const changeSlide = (direction) => {
+      currentIndex = (currentIndex + direction + slides.length) % slides.length;
+      showSlide();
+    };
+
+    controls.querySelectorAll('.slider-btn').forEach((button) => {
+      button.addEventListener('click', () => {
+        changeSlide(button.dataset.direction === 'next' ? 1 : -1);
+      });
+    });
+
+    showSlide();
+  });
+}
+
+if (addCartButtons.length) {
+  addCartButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      addToCart(button.dataset.productId);
+      button.textContent = 'Added';
+      button.disabled = true;
+      setTimeout(() => {
+        button.textContent = 'Add to cart';
+        button.disabled = false;
+      }, 1400);
+    });
+  });
+}
 
 function handleFormSubmission(event, message) {
   event.preventDefault();
@@ -80,36 +176,43 @@ function handleFormSubmission(event, message) {
   event.target.reset();
 }
 
-const customizeForm = document.getElementById('customize-form');
-const signupForm = document.getElementById('signup-form');
-const checkoutForm = document.getElementById('checkout-form');
+if (customizeForm) {
+  customizeForm.addEventListener('submit', (event) => {
+    handleFormSubmission(event, 'Your custom pickle recipe has been saved. Continue to checkout when ready!');
+  });
+}
 
-customizeForm.addEventListener('submit', (event) => {
-  handleFormSubmission(event, 'Your custom pickle recipe has been saved. Continue to checkout when ready!');
-});
+if (signupForm) {
+  signupForm.addEventListener('submit', (event) => {
+    handleFormSubmission(event, 'Thanks for joining! Watch your inbox for pickle updates and offers.');
+  });
+}
 
-signupForm.addEventListener('submit', (event) => {
-  handleFormSubmission(event, 'Thanks for joining! Watch your inbox for pickle updates and offers.');
-});
+if (checkoutForm) {
+  checkoutForm.addEventListener('submit', (event) => {
+    event.preventDefault();
 
-checkoutForm.addEventListener('submit', (event) => {
-  event.preventDefault();
+    if (Object.keys(cart).length === 0) {
+      alert('Your cart is empty. Add a pickle before placing your order.');
+      return;
+    }
 
-  if (Object.keys(cart).length === 0) {
-    alert('Your cart is empty. Add a pickle before placing your order.');
-    return;
-  }
+    alert('Order received! We will contact you shortly with delivery details.');
+    checkoutForm.reset();
+    Object.keys(cart).forEach((key) => delete cart[key]);
+    saveCart();
+    updateCart();
+  });
+}
 
-  alert('Order received! We will contact you shortly with delivery details.');
-  checkoutForm.reset();
-  Object.keys(cart).forEach((key) => delete cart[key]);
-  updateCart();
-});
+if (navToggle && mobileMenu) {
+  navToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('show');
+    const hidden = mobileMenu.getAttribute('aria-hidden') === 'true';
+    mobileMenu.setAttribute('aria-hidden', String(!hidden));
+  });
+}
 
-navToggle.addEventListener('click', () => {
-  mobileMenu.classList.toggle('show');
-  const hidden = mobileMenu.getAttribute('aria-hidden') === 'true';
-  mobileMenu.setAttribute('aria-hidden', String(!hidden));
-});
-
+initProductFilters();
+initProductSliders();
 updateCart();
