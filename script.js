@@ -12,38 +12,18 @@ const products = [
   { id: 'coconut-pepper', name: 'Coconut Pepper Bliss', price: 14.5 }
 ];
 
-const STORAGE_KEY = 'achar-premium-cart';
-
-function loadCart() {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : {};
-  } catch {
-    return {};
-  }
-}
-
-const cart = loadCart();
+const cart = {};
 const cartItemsEl = document.getElementById('cart-items');
 const cartTotalEl = document.getElementById('cart-total');
 const addCartButtons = document.querySelectorAll('.add-cart');
 const mobileMenu = document.querySelector('.mobile-menu');
 const navToggle = document.querySelector('.nav-toggle');
-const customizeForm = document.getElementById('customize-form');
-const signupForm = document.getElementById('signup-form');
-const checkoutForm = document.getElementById('checkout-form');
 
 function formatPrice(value) {
   return `$${value.toFixed(2)}`;
 }
 
-function saveCart() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
-}
-
 function updateCart() {
-  if (!cartItemsEl || !cartTotalEl) return;
-
   const items = Object.values(cart);
   cartItemsEl.innerHTML = '';
 
@@ -78,23 +58,21 @@ function addToCart(productId) {
 
   cart[productId] = cart[productId] || { ...product, quantity: 0 };
   cart[productId].quantity += 1;
-  saveCart();
+
   updateCart();
 }
 
-if (addCartButtons.length) {
-  addCartButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      addToCart(button.dataset.productId);
-      button.textContent = 'Added';
-      button.disabled = true;
-      setTimeout(() => {
-        button.textContent = 'Add to cart';
-        button.disabled = false;
-      }, 1400);
-    });
+addCartButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    addToCart(button.dataset.productId);
+    button.textContent = 'Added';
+    button.disabled = true;
+    setTimeout(() => {
+      button.textContent = 'Add to cart';
+      button.disabled = false;
+    }, 1400);
   });
-}
+});
 
 function handleFormSubmission(event, message) {
   event.preventDefault();
@@ -102,41 +80,36 @@ function handleFormSubmission(event, message) {
   event.target.reset();
 }
 
-if (customizeForm) {
-  customizeForm.addEventListener('submit', (event) => {
-    handleFormSubmission(event, 'Your custom pickle recipe has been saved. Continue to checkout when ready!');
-  });
-}
+const customizeForm = document.getElementById('customize-form');
+const signupForm = document.getElementById('signup-form');
+const checkoutForm = document.getElementById('checkout-form');
 
-if (signupForm) {
-  signupForm.addEventListener('submit', (event) => {
-    handleFormSubmission(event, 'Thanks for joining! Watch your inbox for pickle updates and offers.');
-  });
-}
+customizeForm.addEventListener('submit', (event) => {
+  handleFormSubmission(event, 'Your custom pickle recipe has been saved. Continue to checkout when ready!');
+});
 
-if (checkoutForm) {
-  checkoutForm.addEventListener('submit', (event) => {
-    event.preventDefault();
+signupForm.addEventListener('submit', (event) => {
+  handleFormSubmission(event, 'Thanks for joining! Watch your inbox for pickle updates and offers.');
+});
 
-    if (Object.keys(cart).length === 0) {
-      alert('Your cart is empty. Add a pickle before placing your order.');
-      return;
-    }
+checkoutForm.addEventListener('submit', (event) => {
+  event.preventDefault();
 
-    alert('Order received! We will contact you shortly with delivery details.');
-    checkoutForm.reset();
-    Object.keys(cart).forEach((key) => delete cart[key]);
-    saveCart();
-    updateCart();
-  });
-}
+  if (Object.keys(cart).length === 0) {
+    alert('Your cart is empty. Add a pickle before placing your order.');
+    return;
+  }
 
-if (navToggle && mobileMenu) {
-  navToggle.addEventListener('click', () => {
-    mobileMenu.classList.toggle('show');
-    const hidden = mobileMenu.getAttribute('aria-hidden') === 'true';
-    mobileMenu.setAttribute('aria-hidden', String(!hidden));
-  });
-}
+  alert('Order received! We will contact you shortly with delivery details.');
+  checkoutForm.reset();
+  Object.keys(cart).forEach((key) => delete cart[key]);
+  updateCart();
+});
+
+navToggle.addEventListener('click', () => {
+  mobileMenu.classList.toggle('show');
+  const hidden = mobileMenu.getAttribute('aria-hidden') === 'true';
+  mobileMenu.setAttribute('aria-hidden', String(!hidden));
+});
 
 updateCart();
