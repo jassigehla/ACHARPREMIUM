@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Achar Premium delivers handcrafted gourmet pickles with fully customizable flavors, premium packaging, and an easy online checkout experience."
+    />
+    <title>Achar Premium Pickles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-bar">
+        <a class="brand" href="#home">Achar Premium</a>
+        <nav class="main-nav" aria-label="Primary navigation">
+          <a href="#home">Home</a>
+          <a href="#catalog">Pickles</a>
+          <a href="#customize">Customize</a>
+          <a href="#about">About</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#faq">FAQ</a>
+          <a href="#checkout">Checkout</a>
+        </nav>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <div class="mobile-menu" aria-hidden="true">
+        <a href="#home">Home</a>
+        <a href="#catalog">Pickles</a>
+        <a href="#customize">Customize</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#faq">FAQ</a>
+        <a href="#checkout">Checkout</a>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Gourmet pickles, tailored for your taste.</p>
+            <h1>Sell premium pickles online with a beautiful shopfront.</h1>
+            <p class="hero-text">
+              Achar Premium offers handcrafted vegetable pickles, custom jars, and a polished ordering experience for every flavor seeker.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#catalog">Shop Pickles</a>
+              <a class="button secondary" href="#customize">Customize Your Jar</a>
+            </div>
+          </div>
+          <div class="hero-panel">
+            <div class="hero-panel-card">
+              <p class="eyebrow">Freshly curated</p>
+              <h2>11 vegetable pickle varieties</h2>
+              <p>Customers choose from classic favorites, spicy blends, and gourmet signature jars designed to delight every palate.</p>
+            </div>
+            <div class="hero-stat-grid">
+              <div>
+                <strong>12K+</strong>
+                <span>Orders delivered</span>
+              </div>
+              <div>
+                <strong>5-star</strong>
+                <span>Customer reviews</span>
+              </div>
+              <div>
+                <strong>100%</strong>
+                <span>Customizable recipes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="catalog">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Pickle Collection</p>
+            <h2>Explore our signature vegetable pickles.</h2>
+          </div>
+          <p class="section-text">
+            Choose from 11 premium varieties, each balanced with bright spices, rich oils, and authentic Indian-style preservation.
+          </p>
+          <div class="product-grid">
+            <article class="product-card">
+              <div class="product-badge">1</div>
+              <h3>Classic Mango Achar</h3>
+              <p>Sweet, tangy, and perfectly spiced with fenugreek and mustard seeds.</p>
+              <span class="product-price">$12.00</span>
+              <button class="button tertiary add-cart" data-product-id="classic-mango">Add to cart</button>
+            </article>
+            <article class="product-card">
+              <div class="product-badge">2</div>
+              <h3>Garlic Lemon Pickle</h3>
+              <p>Bright citrus notes with roasted garlic and black pepper.</p>
+              <span class="product-price">$13.00</span>
+              <button class="button tertiary add-cart" data-product-id="garlic-lemon">Add to cart</button>
+            </article>
+            <article class="product-card">
+              <div class="product-badge">3</div>
+              <h3>Chili Carrot Crunch</h3>
+              <p>Spicy, crunchy carrots with sesame and chili oil.</p>
+              <span class="product-price">$11.00</span>
+              <button class="button tertiary add-cart" data-product-id="chili-carrot">Add to cart</button>
+            </article>
+            <article class="product-card">
+              <div class="product-badge">4</div>
+              <h3>Green Chili Delight</h3>
+              <p>A bold green chili blend with garlic, lemon, and tangy spices.</p>
+              <span class="product-price">$12.50</span>
+              <button class="button tertiary add-cart" data-product-id="green-chili">Add to cart</button>
+            </article>
+            <article class="product-card">
+              <div class="product-badge">5</div>
+              <h3>Ginger Honey Pickle</h3>
+              <p>Warm ginger balanced with honey sweetness and saffron.</p>
+              <span class="product-price">$14.00</span>
+              <button class="button tertiary add-cart" data-product-id="ginger-honey">Add to cart</button>
+            </article>
+            <article class="product-card">
+              <div class="product-badge">6</div>
+              <h3>Cumin Cauliflower</h3>
+              <p>Earthy cumin and turmeric bring out rich cauliflower flavors.</p>
+              <span class="product-price">$12.00</span>
+              <button class="button tertiary add-cart" data-product-id="cumin-cauliflower">Add to cart</button>
+            </article>
+            <article class="product-card">
+              <div class="product-badge">7</div>
+              <h3>Tangy Onion Mix</h3>
+              <p>Red onions marinated in vinegar, jaggery, and aromatic seeds.</p>
+              <span class="product-price">$10.50</span>
+              <button class="button tertiary add-cart" data-product-id="tangy-onion">Add to cart</button>
+            </article>
+            <article class="product-card">
+              <div class="product-badge">8</div>
+              <h3>Spiced Eggplant</h3>
+              <p>Velvety eggplant with mustard, chili, and kasuri methi.</p>
+              <span class="product-price">$13.50</span>
+              <button class="button tertiary add-cart" data-product-id="spiced-eggplant">Add to cart</button>
+            </article>
+            <article class="product-card">
+              <div class="product-badge">9</div>
+              <h3>Mixed Veggie Symphony</h3>
+              <p>Carrot, chilli, cauliflower, and mango in a complex fusion jar.</p>
+              <span class="product-price">$15.00</span>
+              <button class="button tertiary add-cart" data-product-id="mixed-veggie">Add to cart</button>
+            </article>
+            <article class="product-card">
+              <div class="product-badge">10</div>
+              <h3>Beetroot Saffron Treat</h3>
+              <p>Sweet beetroot with saffron, cardamom, and a citrus finish.</p>
+              <span class="product-price">$13.00</span>
+              <button class="button tertiary add-cart" data-product-id="beetroot-saffron">Add to cart</button>
+            </article>
+            <article class="product-card">
+              <div class="product-badge">11</div>
+              <h3>Coconut Pepper Bliss</h3>
+              <p>Crisp coconut with crushed black pepper, curry leaf, and lime.</p>
+              <span class="product-price">$14.50</span>
+              <button class="button tertiary add-cart" data-product-id="coconut-pepper">Add to cart</button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="customize">
+        <div class="container split-grid">
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">Custom Jars</p>
+              <h2>Build a pickle jar that matches your taste.</h2>
+            </div>
+            <p class="section-text">
+              Customers can select the vegetable mix, spice level, oil type, and seasoning notes for a truly personalized pickle delivery.
+            </p>
+            <ul class="feature-list">
+              <li>Choose from 11 veggie flavors</li>
+              <li>Adjust spice, salt, and sweetness</li>
+              <li>Pick premium jar style and packaging</li>
+              <li>Add extra garlic, chili, or mustard</li>
+            </ul>
+          </div>
+          <form id="customize-form" class="panel-form" aria-label="Customize your pickle order">
+            <label for="veg-choice">Pick your vegetable base</label>
+            <select id="veg-choice" name="veg-choice">
+              <option>Mango</option>
+              <option>Carrot</option>
+              <option>Garlic</option>
+              <option>Chili</option>
+              <option>Cauliflower</option>
+              <option>Onion</option>
+              <option>Eggplant</option>
+              <option>Beetroot</option>
+              <option>Coconut</option>
+              <option>Mixed Veg</option>
+              <option>Ginger</option>
+            </select>
+            <label for="spice-level">Spice level</label>
+            <select id="spice-level" name="spice-level">
+              <option>Mild</option>
+              <option>Medium</option>
+              <option>Hot</option>
+              <option>Extra Hot</option>
+            </select>
+            <label for="oil-choice">Oil style</label>
+            <select id="oil-choice" name="oil-choice">
+              <option>Mustard Oil</option>
+              <option>Sesame Oil</option>
+              <option>Sunflower Oil</option>
+              <option>Olive Oil</option>
+            </select>
+            <label for="jar-size">Jar size</label>
+            <select id="jar-size" name="jar-size">
+              <option>250ml</option>
+              <option>500ml</option>
+              <option>750ml</option>
+              <option>1L</option>
+            </select>
+            <button class="button primary" type="submit">Save my custom recipe</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <div class="container split-grid reverse-grid">
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">About us</p>
+              <h2>We make handcrafted pickles for modern homes.</h2>
+            </div>
+            <p class="section-text">
+              Achar Premium blends traditional pickling expertise with premium ingredients, sustainable packaging, and an effortless online storefront.
+            </p>
+            <div class="info-box-grid">
+              <article class="info-box">
+                <strong>Handmade batches</strong>
+                <p>Every jar is prepared in small batches to preserve authenticity and freshness.</p>
+              </article>
+              <article class="info-box">
+                <strong>Custom recipes</strong>
+                <p>Customers choose exact flavor profiles, spice strength, and oil preferences.</p>
+              </article>
+            </div>
+          </div>
+          <div class="about-media">
+            <div class="media-card">
+              <h3>Pickles ready in 3 steps</h3>
+              <p>Discover, customize, order — then enjoy premium pickles delivered to your door.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="testimonials">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">Testimonials</p>
+            <h2>Customers love our handcrafted pickles.</h2>
+          </div>
+          <div class="testimonial-grid">
+            <article class="testimonial-card">
+              <p>"The Mango Achar is the best I've ever tasted. The packaging felt premium and the spice was perfect."</p>
+              <strong>Rhea K.</strong>
+            </article>
+            <article class="testimonial-card">
+              <p>"I customized a jar for my grandparents and they could not stop complimenting the flavor. Excellent service."</p>
+              <strong>Akash M.</strong>
+            </article>
+            <article class="testimonial-card">
+              <p>"Fast checkout, intuitive product pages, and the garlic lemon pickle is now my go-to gift for friends."</p>
+              <strong>Priya S.</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="section-heading">
+            <p class="eyebrow">FAQ</p>
+            <h2>Everything you need to know before you order.</h2>
+          </div>
+          <div class="faq-grid">
+            <article>
+              <h3>Do you offer fully custom recipes?</h3>
+              <p>Yes. Choose vegetable base, spice intensity, oil, jar size, and extra ingredients to create a unique pickle jar.</p>
+            </article>
+            <article>
+              <h3>What is the delivery time?</h3>
+              <p>Standard delivery is 3-5 business days. Express packaging options are available during checkout.</p>
+            </article>
+            <article>
+              <h3>Are the pickles preservative-free?</h3>
+              <p>We use natural preservation methods with quality oils and spices. No artificial preservatives are added.</p>
+            </article>
+            <article>
+              <h3>Can I order gifts for friends?</h3>
+              <p>Absolutely. We offer gift wrapping, custom notes, and bundled packages for celebrations.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt" id="signup">
+        <div class="container signup-panel">
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">Stay connected</p>
+              <h2>Join our pickle lovers club.</h2>
+            </div>
+            <p class="section-text">Sign up for exclusive offers, seasonal launches, and recipe ideas delivered directly to your inbox.</p>
+          </div>
+          <form id="signup-form" class="newsletter-form" aria-label="Sign up for updates">
+            <input type="email" id="newsletter-email" placeholder="Enter your email address" required />
+            <button class="button primary" type="submit">Join now</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" id="checkout">
+        <div class="container split-grid">
+          <div>
+            <div class="section-heading">
+              <p class="eyebrow">Checkout</p>
+              <h2>Your cart and secure order details.</h2>
+            </div>
+            <div class="cart-summary" id="cart-summary">
+              <h3>Selected items</h3>
+              <div id="cart-items" class="cart-items">
+                <p class="empty-cart">No items yet. Add a pickle to get started.</p>
+              </div>
+              <div class="cart-total">
+                <span>Order total</span>
+                <strong id="cart-total">$0.00</strong>
+              </div>
+            </div>
+          </div>
+          <form id="checkout-form" class="panel-form" aria-label="Place order">
+            <label for="customer-name">Full name</label>
+            <input type="text" id="customer-name" placeholder="Your full name" required />
+            <label for="customer-email">Email</label>
+            <input type="email" id="customer-email" placeholder="you@example.com" required />
+            <label for="customer-address">Delivery address</label>
+            <textarea id="customer-address" rows="4" placeholder="Street address, city, postal code" required></textarea>
+            <label for="payment-method">Payment method</label>
+            <select id="payment-method" required>
+              <option value="card">Credit card</option>
+              <option value="upi">UPI</option>
+              <option value="cod">Cash on delivery</option>
+            </select>
+            <button class="button primary" type="submit">Place order</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="brand" href="#home">Achar Premium</a>
+          <p>Handcrafted pickles, customized for every pallet and celebration.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#faq">FAQ</a>
+          <a href="#checkout">Checkout</a>
+        </div>
+      </div>
+      <div class="container footer-row">
+        <p>© 2026 Achar Premium Pickles. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
