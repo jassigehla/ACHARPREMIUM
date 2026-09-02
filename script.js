@@ -46,6 +46,9 @@ const navToggle = document.querySelector('.nav-toggle');
 const customizeForm = document.getElementById('customize-form');
 const signupForm = document.getElementById('signup-form');
 const checkoutForm = document.getElementById('checkout-form');
+const journeySteps = document.querySelectorAll('.journey-step');
+const journeyProgressFill = document.querySelector('.journey-progress-fill');
+const journeySections = ['#home', '#catalog', '#customize', '#signup', '#checkout'];
 
 function formatPrice(value) {
   return `$${value.toFixed(2)}`;
@@ -213,6 +216,42 @@ if (navToggle && mobileMenu) {
   });
 }
 
+function updateJourneyStep() {
+  const scrollPosition = window.scrollY + 180;
+  let activeId = '#home';
+
+  journeySections.forEach((sectionId) => {
+    const section = document.querySelector(sectionId);
+    if (!section) return;
+
+    const top = section.offsetTop;
+    if (scrollPosition >= top) {
+      activeId = sectionId;
+    }
+  });
+
+  journeySteps.forEach((step) => {
+    const isActive = step.getAttribute('href') === activeId;
+    step.classList.toggle('active', isActive);
+    if (isActive) {
+      step.setAttribute('aria-current', 'step');
+    } else {
+      step.removeAttribute('aria-current');
+    }
+  });
+
+  const activeIndex = journeySections.indexOf(activeId);
+  const progressPercent = journeySections.length > 1 ? (activeIndex / (journeySections.length - 1)) * 100 : 0;
+
+  if (journeyProgressFill) {
+    journeyProgressFill.style.width = `${progressPercent}%`;
+  }
+}
+
+window.addEventListener('scroll', updateJourneyStep, { passive: true });
+window.addEventListener('load', updateJourneyStep);
+
 initProductFilters();
 initProductSliders();
 updateCart();
+updateJourneyStep();

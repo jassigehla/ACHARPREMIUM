@@ -46,6 +46,32 @@
       </div>
     </header>
 
+    <div class="container">
+      <nav class="journey-bar" aria-label="AcharPremium main journey">
+        <span class="journey-progress-fill" aria-hidden="true"></span>
+        <a class="journey-step active" href="#home">
+          <span class="step-number">1</span>
+          <span class="step-label">Start</span>
+        </a>
+        <a class="journey-step" href="#catalog">
+          <span class="step-number">2</span>
+          <span class="step-label">Browse</span>
+        </a>
+        <a class="journey-step" href="#customize">
+          <span class="step-number">3</span>
+          <span class="step-label">Customize</span>
+        </a>
+        <a class="journey-step" href="#signup">
+          <span class="step-number">4</span>
+          <span class="step-label">Sign Up</span>
+        </a>
+        <a class="journey-step" href="#checkout">
+          <span class="step-number">5</span>
+          <span class="step-label">Checkout</span>
+        </a>
+      </nav>
+    </div>
+
     <main id="home">
       <section class="hero">
         <div class="container hero-grid">
@@ -96,7 +122,7 @@
           <p class="section-text">
             Choose from 11 premium varieties, each balanced with bright spices, rich oils, and authentic Indian-style preservation.
           </p>
-          <div class="filter-bar" role="tablist" aria-label="Browse pickle categories">
+          <div class="filter-bar" aria-label="Browse pickle categories">
             <button class="filter-btn active" data-filter="all" type="button">All</button>
             <button class="filter-btn" data-filter="spicy" type="button">Spicy</button>
             <button class="filter-btn" data-filter="sweet" type="button">Sweet</button>
@@ -387,7 +413,14 @@
             <p class="section-text">Sign up for exclusive offers, seasonal launches, and recipe ideas delivered directly to your inbox.</p>
           </div>
           <form id="signup-form" class="newsletter-form" aria-label="Sign up for updates">
-            <input type="email" id="newsletter-email" placeholder="Enter your email address" required />
+            <label for="newsletter-email">Email address</label>
+            <input
+              type="email"
+              id="newsletter-email"
+              name="newsletter-email"
+              placeholder="Enter your email address"
+              required
+            />
             <button class="button primary" type="submit">Join now</button>
           </form>
         </div>
