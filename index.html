@@ -122,7 +122,7 @@
           <p class="section-text">
             Choose from 11 premium varieties, each balanced with bright spices, rich oils, and authentic Indian-style preservation.
           </p>
-          <div class="filter-bar" role="tablist" aria-label="Browse pickle categories">
+          <div class="filter-bar" aria-label="Browse pickle categories">
             <button class="filter-btn active" data-filter="all" type="button">All</button>
             <button class="filter-btn" data-filter="spicy" type="button">Spicy</button>
             <button class="filter-btn" data-filter="sweet" type="button">Sweet</button>
@@ -413,7 +413,14 @@
             <p class="section-text">Sign up for exclusive offers, seasonal launches, and recipe ideas delivered directly to your inbox.</p>
           </div>
           <form id="signup-form" class="newsletter-form" aria-label="Sign up for updates">
-            <input type="email" id="newsletter-email" placeholder="Enter your email address" required />
+            <label for="newsletter-email">Email address</label>
+            <input
+              type="email"
+              id="newsletter-email"
+              name="newsletter-email"
+              placeholder="Enter your email address"
+              required
+            />
             <button class="button primary" type="submit">Join now</button>
           </form>
         </div>
