@@ -51,7 +51,7 @@ class Cart {
     const product = typeof productOrId === 'string'
       ? products.find((item) => item.id === productOrId)
       : productOrId;
-    if (!product || !product.id || !product.name || !Number.isFinite(Number(product.price))) return;
+    if (!product?.id || !product.name || !Number.isFinite(Number(product.price))) return;
 
     this.items[product.id] = this.items[product.id] || { ...product, quantity: 0 };
     this.items[product.id].quantity += quantity;
