@@ -146,9 +146,12 @@ ACHARPREMIUM/
    - Then navigate to `http://localhost:8000`
 
 3. **Deploy to GitHub Pages**
-   - Push to main branch
-   - Enable GitHub Pages in repository settings
-   - Select "Deploy from a branch" → main branch
+   - Merge or push the project to the `main` branch.
+   - The included **Deploy storefront to GitHub Pages** workflow publishes the static storefront automatically.
+   - In repository **Settings → Pages**, set the source to **GitHub Actions**.
+   - The public URL will be shown in the workflow run and Pages settings.
+
+> The browser storefront is static and can be hosted on GitHub Pages. The optional Express/MySQL backend in `backend/` needs a separate Node.js host and database; configure `backend/.env` from `.env.example` before using accounts, newsletter persistence, or live orders.
 
 ---
 
