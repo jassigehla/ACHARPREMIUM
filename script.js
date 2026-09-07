@@ -47,12 +47,14 @@ class Cart {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(this.items));
   }
 
-  addToCart(productId, quantity = 1) {
-    const product = products.find((item) => item.id === productId);
-    if (!product) return;
+  addToCart(productOrId, quantity = 1) {
+    const product = typeof productOrId === 'string'
+      ? products.find((item) => item.id === productOrId)
+      : productOrId;
+    if (!product || !product.id || !product.name || !Number.isFinite(Number(product.price))) return;
 
-    this.items[productId] = this.items[productId] || { ...product, quantity: 0 };
-    this.items[productId].quantity += quantity;
+    this.items[product.id] = this.items[product.id] || { ...product, quantity: 0 };
+    this.items[product.id].quantity += quantity;
     this.saveCart();
     this.updateCartUI();
     this.showNotification(`${product.name} added to cart!`);
@@ -233,7 +235,14 @@ class Auth {
 
   getUser() {
     const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
+    if (!user) return null;
+
+    try {
+      return JSON.parse(user);
+    } catch {
+      localStorage.removeItem('user');
+      return null;
+    }
   }
 
   getAuthHeader() {
@@ -315,7 +324,13 @@ class NewsletterHandler {
 
   async handleSubmit(e) {
     e.preventDefault();
-    const email = document.getElementById('newsletter-email').value;
+    const emailInput = document.getElementById('newsletter-email') || document.getElementById('email');
+    const email = emailInput?.value.trim();
+
+    if (!email) {
+      alert('Please enter a valid email address.');
+      return;
+    }
 
     try {
       const response = await fetch('/api/newsletter/subscribe', {
@@ -381,7 +396,7 @@ class CustomizeHandler {
       jarSize: jarSize
     };
 
-    this.cart.addToCart(customProduct.id, 1);
+    this.cart.addToCart(customProduct, 1);
     
     // Store custom order details in session
     const customOrder = {
