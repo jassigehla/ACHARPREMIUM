@@ -31,7 +31,21 @@ const STORAGE_KEY = 'achar-premium-cart';
 function loadCart() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : {};
+    const parsed = saved ? JSON.parse(saved) : {};
+
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+      return {};
+    }
+
+    return Object.entries(parsed).reduce((validCart, [productId, item]) => {
+      const product = products.find((candidate) => candidate.id === productId);
+
+      if (product && item && Number.isInteger(item.quantity) && item.quantity > 0) {
+        validCart[productId] = { ...product, quantity: item.quantity };
+      }
+
+      return validCart;
+    }, {});
   } catch {
     return {};
   }
